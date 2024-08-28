@@ -15,7 +15,8 @@ async function entrar(data) {
 }
 
 async function sair(data) {
-  let usuario = await db.findOne('usuarios', data);
+  let usuario = await db.findOne
+  ('usuarios', data);
   if (usuario) {
     await db.deleteOne('usuarios', data);
     return {message: 'Usuário deixou a sala'};
