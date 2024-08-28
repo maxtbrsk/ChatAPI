@@ -1,31 +1,31 @@
 const {MongoClient, ObjectId} = require('mongodb');
 
-let singleton;
+let singleton
 
 async function connect(){
-    if (singleton) return singleton;
-    const client = new MongoClient(process.env.DB_HOST);
-    await client.connect();
+    if (singleton) return singleton
+    const client = new MongoClient(process.env.DB_HOST)
+    await client.connect()
 
     singleton = client.db(process.env.DB_DATABASE);
-    return singleton;
+    return singleton
 }
 
 async function findAll (collection){
-    const db = await connect();
-    return await db.collection(collection).find({}).toArray();
+    const db = await connect()
+    return await db.collection(collection).find({}).toArray()
 }
 
 async function insertOne (collection, data){
-    const db = await connect();
-    const existingData = await db.collection(collection).findOne(data);
+    const db = await connect()
+    const existingData = await db.collection(collection).findOne(data)
     if (existingData) {
-        console.log("Data already exists in the database");
-        return {error: "Já existe um registro com esses dados"};
+        console.log("Data already exists in the database")
+        return {error: "Já existe um registro com esses dados"}
     }
-    const inserted = await db.collection(collection).insertOne(data);
-    console.log(inserted);
-    return inserted;
+    const inserted = await db.collection(collection).insertOne(data)
+    console.log(inserted)
+    return inserted
 }
 
 async function findOne (collection, data){

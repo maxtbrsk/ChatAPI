@@ -1,11 +1,11 @@
-let usuarioModel = require('../model/usuarioModel');
+let usuarioModel = require('../model/usuarioModel')
 
 exports.post = async (req, res) => {
-    let resp = await usuarioModel.entrar(req.body);
-    return resp;
+    let resp = await usuarioModel.entrar(req.body)
+    return resp
 }
 
 exports.delete = async (req, res) => {
-    let resp = await usuarioModel.sair(req.body);
-    return resp;
+    let resp = await usuarioModel.sair(req.body)
+    return resp
 }
